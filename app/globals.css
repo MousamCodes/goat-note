@@ -150,3 +150,43 @@
 .markdown th, .markdown td { border: 1px solid var(--border); padding: 0.3em 0.6em; text-align: left; }
 .markdown a { text-decoration: underline; text-underline-offset: 2px; }
 .markdown hr { border: 0; border-top: 1px solid var(--border); margin: 0.8em 0; }
+
+/* Landing page backdrop: fading grid + soft glows */
+.landing-bg {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.landing-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(to right, color-mix(in oklch, var(--foreground) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklch, var(--foreground) 10%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 75% at 50% 0%, black 25%, transparent 85%);
+  mask-image: radial-gradient(ellipse 90% 75% at 50% 0%, black 25%, transparent 85%);
+}
+.landing-glow {
+  position: absolute;
+  z-index: -1;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
+  opacity: 0.55;
+}
+.dark .landing-glow {
+  opacity: 0.35;
+}
+@keyframes landing-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.landing-float {
+  animation: landing-float 6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-float { animation: none; }
+}
