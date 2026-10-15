@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { SocialLinks } from "@/components/social-links";
 
 const features = [
   {
@@ -181,8 +182,22 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-        Built with Next.js, Convex, Clerk and Gemini.
+      <footer className="border-t border-border bg-background/60 backdrop-blur">
+        <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-3 px-6 py-5 text-xs text-muted-foreground sm:flex-row">
+          <p>
+            Built by{" "}
+            <a
+              href="https://github.com/MousamCodes"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-foreground underline-offset-4 hover:underline"
+            >
+              Mousam Podder
+            </a>{" "}
+            with Next.js, Convex, Clerk and Gemini.
+          </p>
+          <SocialLinks />
+        </div>
       </footer>
     </div>
   );
